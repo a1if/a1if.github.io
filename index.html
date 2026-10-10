@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alif Tasbir · AI/ML Engineer</title>
+<meta name="description" content="Alif Tasbir — AI/ML engineer building and deploying LLM, RAG and clinical deep learning systems. MSc Artificial Intelligence, De Montfort University.">
+<meta property="og:title" content="Alif Tasbir · AI/ML Engineer">
+<meta property="og:description" content="LLM fine-tuning, RAG pipelines and clinical AI research.">
+<meta property="og:image" content="https://github.com/a1if.png">
+<link rel="icon" href="https://github.com/a1if.png">
+<style>
+  :root {
+    --bg: #ffffff;
+    --bg-subtle: #f6f8fa;
+    --border: #d0d7de;
+    --fg: #1f2328;
+    --muted: #59636e;
+    --accent: #0969da;
+    --green: #1a7f37;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0d1117; --bg-subtle: #151b23; --border: #3d444d;
+      --fg: #f0f6fc; --muted: #9198a1; --accent: #4493f8; --green: #3fb950;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0d1117; --bg-subtle: #151b23; --border: #3d444d;
+    --fg: #f0f6fc; --muted: #9198a1; --accent: #4493f8; --green: #3fb950;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--fg);
+    font: 16px/1.6 var(--sans); -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px; }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; gap: 20px; height: 56px; }
+  nav .brand { font-family: var(--mono); font-weight: 600; color: var(--fg); margin-right: auto; }
+  nav .links a { color: var(--muted); font-size: 14px; margin-left: 18px; }
+  nav .links a:hover { color: var(--fg); text-decoration: none; }
+  #theme {
+    background: none; border: 1px solid var(--border); color: var(--muted);
+    border-radius: 6px; width: 32px; height: 32px; cursor: pointer; font-size: 15px;
+  }
+  #theme:hover { color: var(--fg); background: var(--bg-subtle); }
+  @media (max-width: 600px) { nav .links { display: none; } }
+
+  /* hero */
+  header { padding: 72px 0 48px; display: flex; gap: 28px; align-items: center; }
+  header img {
+    width: 112px; height: 112px; border-radius: 50%;
+    border: 1px solid var(--border); flex-shrink: 0;
+  }
+  header h1 { font-size: 32px; line-height: 1.2; margin: 0 0 4px; letter-spacing: -0.02em; }
+  header .role { font-family: var(--mono); color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+  header .status {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px;
+    border: 1px solid var(--border); border-radius: 999px; padding: 3px 12px; color: var(--muted);
+  }
+  header .status::before {
+    content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green);
+  }
+  @media (max-width: 600px) {
+    header { flex-direction: column; align-items: flex-start; padding-top: 48px; }
+    header img { width: 88px; height: 88px; }
+  }
+
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  h2 {
+    font-family: var(--mono); font-size: 14px; font-weight: 600; color: var(--muted);
+    text-transform: lowercase; margin: 0 0 20px;
+  }
+  h2::before { content: "## "; color: var(--accent); }
+  p { margin: 0 0 12px; }
+  .lead { font-size: 17px; }
+
+  /* projects: GitHub repo-card style */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+  @media (max-width: 400px) { .grid { grid-template-columns: 1fr; } }
+  .card {
+    border: 1px solid var(--border); border-radius: 6px; padding: 16px;
+    display: flex; flex-direction: column; background: var(--bg);
+    transition: border-color .15s;
+  }
+  .card:hover { border-color: var(--muted); }
+  .card h3 { font-size: 15px; margin: 0 0 6px; display: flex; gap: 8px; align-items: center; }
+  .card h3 svg { fill: var(--muted); flex-shrink: 0; }
+  .card p { color: var(--muted); font-size: 14px; flex: 1; }
+  .card ul { color: var(--muted); font-size: 14px; padding-left: 18px; margin: 0 0 12px; flex: 1; }
+  .meta { font-size: 12px; color: var(--muted); display: flex; gap: 14px; flex-wrap: wrap; }
+  .lang::before {
+    content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%;
+    margin-right: 5px; vertical-align: -1px; background: var(--c);
+  }
+  .tag {
+    font-size: 11px; font-family: var(--mono); padding: 1px 8px; border-radius: 999px;
+    border: 1px solid var(--border); color: var(--muted);
+  }
+
+  .card.featured { grid-column: 1 / -1; border-color: var(--accent); background: var(--bg-subtle); padding: 20px; }
+  .card.featured h3 { font-size: 18px; margin-bottom: 10px; }
+  .card.featured p, .card.featured ul { color: var(--fg); font-size: 15px; flex: none; }
+  .feat-head { display: flex; gap: 8px; margin-bottom: 10px; }
+  .tag.live { color: var(--green); border-color: var(--green); }
+  .card.featured .note { font-size: 12px; color: var(--muted); margin: -6px 0 12px; }
+  .actions { display: flex; gap: 10px; flex-wrap: wrap; margin: 4px 0 14px; }
+
+  /* timeline */
+  .item { display: grid; grid-template-columns: 150px 1fr; gap: 16px; margin-bottom: 24px; }
+  .item:last-child { margin-bottom: 0; }
+  .item .when { font-family: var(--mono); font-size: 13px; color: var(--muted); padding-top: 2px; }
+  .item h3 { font-size: 16px; margin: 0; }
+  .item .where { color: var(--muted); font-size: 14px; margin-bottom: 6px; }
+  .item ul { margin: 0; padding-left: 18px; font-size: 15px; }
+  @media (max-width: 600px) { .item { grid-template-columns: 1fr; gap: 2px; } }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: 170px 1fr; gap: 10px 16px; font-size: 15px; }
+  .skills dt { color: var(--muted); font-family: var(--mono); font-size: 13px; padding-top: 3px; }
+  .skills dd { margin: 0; }
+  @media (max-width: 600px) { .skills { grid-template-columns: 1fr; gap: 2px; } .skills dd { margin-bottom: 10px; } }
+
+  .pubs { padding-left: 20px; margin: 0; }
+  .pubs li { margin-bottom: 12px; }
+  .pubs .venue { color: var(--muted); font-size: 14px; }
+
+  .contact { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500;
+    border: 1px solid var(--border); border-radius: 6px; padding: 6px 14px;
+    color: var(--fg); background: var(--bg-subtle);
+  }
+  .btn:hover { text-decoration: none; border-color: var(--muted); }
+  .btn svg { fill: currentColor; }
+  .btn.primary { background: var(--green); border-color: transparent; color: #fff; }
+
+  footer { border-top: 1px solid var(--border); padding: 24px 0 40px; color: var(--muted); font-size: 13px; font-family: var(--mono); }
+</style>
+<script>
+  try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#">~/a1if</a>
+    <div class="links">
+      <a href="#about">about</a>
+      <a href="#projects">projects</a>
+      <a href="#experience">experience</a>
+      <a href="#contact">contact</a>
+    </div>
+    <button id="theme" aria-label="Toggle colour theme" title="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<main class="wrap">
+  <header>
+    <img src="https://github.com/a1if.png" alt="Alif Tasbir">
+    <div>
+      <h1>Alif Tasbir</h1>
+      <p class="role">AI/ML Engineer · LLMs · RAG · Clinical AI</p>
+      <span class="status">Open to AI/ML Engineer roles · Leicester, UK</span>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>about</h2>
+    <p class="lead">I design, fine-tune and deploy large language model and retrieval-augmented generation applications in Python.</p>
+    <p>I'm an MSc Artificial Intelligence candidate at De Montfort University. I work hands-on with PyTorch, QLoRA fine-tuning, FAISS and ChromaDB vector search, and FastAPI services. I've also published deep learning research in clinical AI. I'm looking for an AI/ML Engineer role building machine learning systems that solve real business problems.</p>
+  </section>
+
+  <section id="projects">
+    <h2>projects</h2>
+    <div class="grid">
+
+      <article class="card featured">
+        <div class="feat-head">
+          <span class="tag live">● live demo</span>
+          <span class="tag">MSc dissertation</span>
+        </div>
+        <h3>ECG Multi-Agent Triage: Heterogeneous Edge AI for Clinical Decision Support</h3>
+        <p>A two-agent ECG triage system. A CNN-LSTM perception agent classifies heartbeats and passes events to a frozen Gemma reasoning agent, either as text or as learned virtual tokens. It includes guardrails, an orchestrator and clinician Q&amp;A. This is a research prototype.</p>
+        <ul>
+          <li><strong>24–78%</strong> faster LLM prompt processing than compact text, with balanced accuracy of <strong>0.83 vs 0.73</strong> at 10 and 20 events.</li>
+          <li><strong>10–30%</strong> higher throughput and <strong>12–28%</strong> less energy per decision on a 12 GB GPU, measured with NVML at 100 Hz.</li>
+        </ul>
+        <div class="actions">
+          <a class="btn primary" href="https://ecg-multi-agent-triage.streamlit.app/" target="_blank" rel="noopener">Try the live demo ↗</a>
+          <a class="btn" href="https://github.com/a1if/ecg-multi-agent-triage" target="_blank" rel="noopener">App code</a>
+          <a class="btn" href="https://github.com/a1if/Heterogeneous-Multi-Agent-Edge-AI-for-Clinical-Decision-Support" target="_blank" rel="noopener">Research code</a>
+        </div>
+        <p class="note">Hosted on Streamlit's free tier. If the app is asleep, click "wake up" and give it about 30 seconds.</p>
+        <div class="meta"><span class="lang" style="--c:#3572A5">Python</span><span>PyTorch · Gemma · Streamlit</span></div>
+      </article>
+
+      <article class="card">
+        <h3><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+          <a href="https://github.com/a1if/qlora-multihop-rag" target="_blank" rel="noopener">QLoRA Fine-Tuning &amp; Multi-Hop RAG</a></h3>
+        <ul>
+          <li>Fine-tuned DeepSeek-R1-Distill-Qwen-1.5B with QLoRA (4-bit NF4, r=128), full SFT and adapter merging.</li>
+          <li>Multi-hop RAG over 5,000 arXiv abstracts with sub-question decomposition.</li>
+          <li>Evaluated with BLEU, ROUGE, BERTScore; Gradio chat with source attribution.</li>
+        </ul>
+        <div class="meta"><span class="lang" style="--c:#DA5B0B">Jupyter Notebook</span><span>PyTorch · PEFT · TRL · FAISS</span></div>
+      </article>
+
+      <article class="card">
+        <h3><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+          <a href="https://github.com/a1if/-RAG-System" target="_blank" rel="noopener">Multimodal RAG Application</a></h3>
+        <ul>
+          <li>Bilingual (Bangla &amp; English) RAG on a custom FAISS vector store.</li>
+          <li>FastAPI backend with real-time web search and an adaptive deep-reasoning mode.</li>
+          <li>Dynamic routing between Gemini 2.5 Flash and gpt-oss-20b to balance quality and rate limits.</li>
+        </ul>
+        <div class="meta"><span class="lang" style="--c:#3572A5">Python</span><span>FastAPI · Streamlit · FAISS</span></div>
+      </article>
+
+      <article class="card">
+        <h3><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></svg>
+          <a href="https://github.com/a1if/Nano-Banana-Hackathon" target="_blank" rel="noopener">AI Interior Visualizer</a></h3>
+        <p>An interior design visualizer built for the Nano Banana hackathon, powered by Gemini 2.5 Flash Image.</p>
+        <div class="meta"><span class="lang" style="--c:#3178c6">TypeScript</span><span class="tag">hackathon</span></div>
+      </article>
+
+    </div>
+    <p style="margin-top:20px;font-size:14px"><a href="https://github.com/a1if?tab=repositories" target="_blank" rel="noopener">All repositories on GitHub →</a></p>
+  </section>
+
+  <section id="experience">
+    <h2>experience</h2>
+    <div class="item">
+      <div class="when">Apr 2024 – Sep 2025</div>
+      <div>
+        <h3>Junior Filing Specialist</h3>
+        <div class="where">Compliance Services Limited (WSD Group) · Dhaka</div>
+        <ul>
+          <li>Handled live filings and proofread documents for accuracy.</li>
+          <li>Converted Word documents to HTML and built webpages with HTML/CSS.</li>
+          <li>Maintained filing records and analysed data in Excel.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="item">
+      <div class="when">Jul 2022 – Mar 2023</div>
+      <div>
+        <h3>Research Assistant</h3>
+        <div class="where">University of Information Technology and Sciences (UITS) · Dhaka</div>
+        <ul>
+          <li>Developed graph-based deep learning models for epileptic seizure detection from EEG signals.</li>
+          <li>Applied signal processing, CNNs and statistical inference to optimise results.</li>
+          <li>Contributed to grant proposals and experiment design.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>education</h2>
+    <div class="item">
+      <div class="when">2025 – 2026</div>
+      <div>
+        <h3>MSc Artificial Intelligence</h3>
+        <div class="where">De Montfort University · Leicester, UK</div>
+        <p style="font-size:15px">Neural Systems &amp; NLP · Fuzzy Logic &amp; Evolutionary Computing</p>
+      </div>
+    </div>
+    <div class="item">
+      <div class="when">2018 – 2022</div>
+      <div>
+        <h3>BSc Computer Science &amp; Engineering</h3>
+        <div class="where">UITS · Dhaka, Bangladesh · CGPA 3.74/4.00</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="publications">
+    <h2>publications</h2>
+    <ol class="pubs">
+      <li><a href="https://doi.org/10.1177/20552076241297355" target="_blank" rel="noopener">Parkinson's disease detection from EEG signal employing autoencoder and RBFNN-based hybrid deep learning framework utilizing power spectral density</a><br><span class="venue">Digital Health · SAGE · 2024</span></li>
+      <li><a href="https://doi.org/10.32629/jai.v7i3.1149" target="_blank" rel="noopener">Graph attention network and radial basis function neural network-based hybrid framework for epileptic seizure detection from EEG signal</a><br><span class="venue">Journal of Autonomous Intelligence · Vol. 7, Issue 3 · 2023</span></li>
+      <li><a href="https://doi.org/10.1016/j.jrras.2023.100607" target="_blank" rel="noopener">Epileptic seizure detection from EEG signals using linear graph convolutional network and DenseNet based hybrid framework</a><br><span class="venue">Journal of Radiation Research and Applied Sciences · Elsevier · Vol. 16 · 2023</span></li>
+    </ol>
+  </section>
+
+  <section id="skills">
+    <h2>skills</h2>
+    <dl class="skills">
+      <dt>llms &amp; rag</dt><dd>QLoRA, PEFT, TRL, Hugging Face Transformers, LangChain, LangGraph, Ollama, FAISS, ChromaDB, Sentence Transformers, Gemini API, BLEU/ROUGE/BERTScore</dd>
+      <dt>ml &amp; dl</dt><dd>PyTorch, TensorFlow, Keras, scikit-learn, Pandas, NumPy, CNNs, LSTMs</dd>
+      <dt>apis &amp; apps</dt><dd>FastAPI, Flask, Django, Streamlit, Gradio</dd>
+      <dt>mlops</dt><dd>Git, Docker, MLflow, DVC</dd>
+      <dt>languages</dt><dd>Python, C, C++, Java, JavaScript, SQL, HTML, CSS</dd>
+    </dl>
+  </section>
+
+  <section id="contact">
+    <h2>contact</h2>
+    <p>I'm open to AI/ML Engineer roles and research collaborations, so feel free to get in touch.</p>
+    <div class="contact">
+      <a class="btn primary" href="mailto:aliftasbir@gmail.com">aliftasbir@gmail.com</a>
+      <a class="btn" href="https://github.com/a1if" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 16 16"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.37A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>GitHub</a>
+      <a class="btn" href="https://www.linkedin.com/in/alif-tasbir-16365141b/" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28ZM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13ZM7.12 20.45H3.56V9h3.56v11.45ZM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0Z"/></svg>LinkedIn</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">© <span id="y">2026</span> Alif Tasbir · built with plain HTML &amp; CSS · hosted on GitHub Pages</div>
+</footer>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+  document.getElementById("theme").addEventListener("click", () => {
+    const root = document.documentElement;
+    const cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = cur === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+</script>
+</body>
+</html>
