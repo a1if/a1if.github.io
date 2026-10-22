@@ -9,12 +9,6 @@
 <meta property="og:description" content="Machine learning engineer: deep learning, LLMs and agents, and healthcare AI.">
 <meta property="og:image" content="https://github.com/a1if.png">
 <link rel="icon" href="https://github.com/a1if.png">
-<!-- PWA -->
-<link rel="manifest" href="manifest.webmanifest">
-<meta name="theme-color" content="#0d1117">
-<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Alif Tasbir">
 <style>
   :root {
     --bg: #ffffff;
@@ -398,9 +392,10 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 
-  // Register the service worker (PWA / offline). Ignored on file:// and old browsers.
-  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
-    addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+  // Clean up any previously-installed service worker / caches (PWA was removed).
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.getRegistrations().then((rs) => rs.forEach((r) => r.unregister())).catch(() => {});
+    if (window.caches) caches.keys().then((ks) => ks.forEach((k) => caches.delete(k))).catch(() => {});
   }
 
   // Contact form → Web3Forms (free, no backend). Get a key at https://web3forms.com
