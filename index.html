@@ -9,6 +9,12 @@
 <meta property="og:description" content="Machine learning engineer: deep learning, LLMs and agents, and healthcare AI.">
 <meta property="og:image" content="https://github.com/a1if.png">
 <link rel="icon" href="https://github.com/a1if.png">
+<!-- PWA -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d1117">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Alif Tasbir">
 <style>
   :root {
     --bg: #ffffff;
@@ -149,6 +155,29 @@
   .btn:hover { text-decoration: none; border-color: var(--muted); }
   .btn svg { fill: currentColor; }
   .btn.primary { background: var(--green); border-color: transparent; color: #fff; }
+
+  /* contact form */
+  .form { display: grid; gap: 12px; max-width: 520px; margin-bottom: 24px; }
+  .form .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  @media (max-width: 480px) { .form .row { grid-template-columns: 1fr; } }
+  .form label { display: grid; gap: 5px; font-size: 13px; color: var(--muted); font-family: var(--mono); }
+  .form input, .form textarea {
+    font: inherit; font-size: 15px; color: var(--fg); background: var(--bg);
+    border: 1px solid var(--border); border-radius: 6px; padding: 9px 12px; width: 100%;
+  }
+  .form textarea { min-height: 120px; resize: vertical; }
+  .form input:focus, .form textarea:focus {
+    outline: none; border-color: var(--accent);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 25%, transparent);
+  }
+  .form button { align-self: start; cursor: pointer; }
+  .form button[disabled] { opacity: .6; cursor: default; }
+  .form-note { font-size: 13px; margin: 0; min-height: 1.4em; }
+  .form-note.ok { color: var(--green); }
+  .form-note.err { color: #cf222e; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .form-note.err { color: #ff7b72; } }
+  :root[data-theme="dark"] .form-note.err { color: #ff7b72; }
+  .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
   footer { border-top: 1px solid var(--border); padding: 24px 0 40px; color: var(--muted); font-size: 13px; font-family: var(--mono); }
 </style>
@@ -317,6 +346,25 @@
   <section id="contact">
     <h2>contact</h2>
     <p>I'm open to AI/ML Engineer roles and research collaborations, so feel free to get in touch.</p>
+
+    <form class="form" id="contact-form" novalidate>
+      <div class="row">
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required maxlength="100">
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required maxlength="150">
+        </label>
+      </div>
+      <label>Message
+        <textarea name="message" required maxlength="3000"></textarea>
+      </label>
+      <!-- honeypot: real people leave this empty; bots fill it in -->
+      <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <button class="btn primary" type="submit">Send message</button>
+      <p class="form-note" id="form-note" role="status" aria-live="polite"></p>
+    </form>
+
     <div class="contact">
       <a class="btn primary" href="mailto:aliftasbir@gmail.com">aliftasbir@gmail.com</a>
       <a class="btn" href="Alif_Tasbir_CV.pdf" download><svg width="16" height="16" viewBox="0 0 16 16"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"/><path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z"/></svg>Download CV</a>
@@ -332,14 +380,76 @@
   <div class="wrap">© <span id="y">2026</span> Alif Tasbir · built with plain HTML &amp; CSS · hosted on GitHub Pages</div>
 </footer>
 
+<!--
+  Privacy-friendly analytics (GoatCounter — free, no cookies, GDPR-friendly).
+  1. Sign up at https://www.goatcounter.com/ and pick a code, e.g. "a1if".
+  2. Replace YOURCODE below with it and uncomment this line.
+  <script data-goatcounter="https://YOURCODE.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+-->
 <script>
   document.getElementById("y").textContent = new Date().getFullYear();
+
+  // Theme toggle
   document.getElementById("theme").addEventListener("click", () => {
     const root = document.documentElement;
     const cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
     const next = cur === "dark" ? "light" : "dark";
     root.dataset.theme = next;
     try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+
+  // Register the service worker (PWA / offline). Ignored on file:// and old browsers.
+  if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+    addEventListener("load", () => navigator.serviceWorker.register("sw.js").catch(() => {}));
+  }
+
+  // Contact form → Web3Forms (free, no backend). Get a key at https://web3forms.com
+  // (enter your email, they mail you an access key). Paste it below. The key is safe
+  // to publish: it only lets the form deliver to your inbox.
+  const WEB3FORMS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+  const form = document.getElementById("contact-form");
+  const note = document.getElementById("form-note");
+  if (form) form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    note.className = "form-note";
+    if (form.botcheck.value) return;                 // honeypot tripped → silently drop
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (WEB3FORMS_KEY === "YOUR_WEB3FORMS_ACCESS_KEY") {
+      note.textContent = "Form not configured yet — add your Web3Forms access key.";
+      note.classList.add("err");
+      return;
+    }
+    const btn = form.querySelector("button[type=submit]");
+    const original = btn.textContent;
+    btn.disabled = true; btn.textContent = "Sending…";
+    note.textContent = "";
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_KEY,
+          name: form.name.value,
+          email: form.email.value,
+          message: form.message.value,
+          subject: "New message from your portfolio",
+          from_name: "Portfolio contact form"
+        })
+      });
+      const data = await res.json();
+      if (data.success) {
+        form.reset();
+        note.textContent = "Thanks — your message has been sent. I'll reply by email.";
+        note.classList.add("ok");
+      } else {
+        throw new Error(data.message || "Failed");
+      }
+    } catch (err) {
+      note.textContent = "Sorry, that didn't send. Please email aliftasbir@gmail.com instead.";
+      note.classList.add("err");
+    } finally {
+      btn.disabled = false; btn.textContent = original;
+    }
   });
 </script>
 </body>
