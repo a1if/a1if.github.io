@@ -1,5 +1,5 @@
 # Pages CMS configuration — https://pagescms.org
-# Lets you write and publish blog posts from a browser editor at https://app.pagescms.org
+# Edit your blog and every homepage section from a browser at https://app.pagescms.org
 
 media:
   input: images/blog
@@ -37,3 +37,185 @@ content:
         type: rich-text
         options:
           format: markdown
+
+  - name: profile
+    label: Profile & intro
+    type: file
+    path: _data/profile.yml
+    format: yaml
+    fields:
+      - name: name
+        label: Name
+        type: string
+        required: true
+      - name: role
+        label: Role line
+        description: The line under your name.
+        type: string
+      - name: status
+        label: Status badge
+        description: The green-dot badge at the top. Leave empty to hide it.
+        type: string
+      - name: lead
+        label: Intro headline
+        description: The large first sentence of the About section.
+        type: text
+      - name: about
+        label: About paragraph
+        type: text
+      - name: contact_intro
+        label: Contact section text
+        type: text
+
+  - name: projects
+    label: Projects
+    type: file
+    path: _data/projects.yml
+    format: yaml
+    list: true
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: url
+        label: Title link
+        description: Usually the GitHub repo. Leave empty for no link.
+        type: string
+      - name: featured
+        label: Featured (full-width highlighted card)
+        type: boolean
+      - name: live_demo
+        label: Show "live demo" badge
+        description: Only shown on featured projects.
+        type: boolean
+      - name: badges
+        label: Badges
+        description: Small labels on featured projects, e.g. "MSc dissertation".
+        type: string
+        list: true
+      - name: description
+        label: Description
+        description: Optional short paragraph. Use **double asterisks** for bold.
+        type: text
+      - name: points
+        label: Bullet points
+        description: Use **double asterisks** for bold numbers.
+        type: text
+        list: true
+      - name: links
+        label: Buttons
+        description: Buttons under the project, e.g. live demo or code.
+        type: object
+        list: true
+        fields:
+          - name: label
+            label: Button text
+            type: string
+          - name: url
+            label: Link
+            type: string
+          - name: primary
+            label: Green (main) button
+            type: boolean
+      - name: note
+        label: Small note
+        description: Optional grey note under the buttons.
+        type: string
+      - name: language
+        label: Main language
+        description: Sets the coloured dot.
+        type: select
+        options:
+          values: [Python, Jupyter Notebook, TypeScript, JavaScript, Java, C++, C, HTML]
+      - name: stack
+        label: Tech stack
+        description: e.g. PyTorch · FastAPI · FAISS
+        type: string
+      - name: tags
+        label: Tags
+        description: Small pills after the stack, e.g. "hackathon".
+        type: string
+        list: true
+
+  - name: experience
+    label: Experience
+    type: file
+    path: _data/experience.yml
+    format: yaml
+    list: true
+    fields:
+      - name: role
+        label: Job title
+        type: string
+        required: true
+      - name: organisation
+        label: Organisation · location
+        type: string
+      - name: dates
+        label: Dates
+        description: e.g. Apr 2024 – Sep 2025
+        type: string
+      - name: points
+        label: Bullet points
+        type: text
+        list: true
+
+  - name: education
+    label: Education
+    type: file
+    path: _data/education.yml
+    format: yaml
+    list: true
+    fields:
+      - name: degree
+        label: Degree
+        type: string
+        required: true
+      - name: institution
+        label: Institution · location
+        type: string
+      - name: grade
+        label: Grade
+        description: Shown in bold, e.g. Distinction (80%).
+        type: string
+      - name: dates
+        label: Dates
+        description: e.g. 2025 – 2026
+        type: string
+      - name: details
+        label: Modules / details
+        type: text
+
+  - name: publications
+    label: Publications
+    type: file
+    path: _data/publications.yml
+    format: yaml
+    list: true
+    fields:
+      - name: title
+        label: Paper title
+        type: text
+        required: true
+      - name: url
+        label: Link (DOI preferred)
+        type: string
+      - name: venue
+        label: Journal · publisher · year
+        type: string
+
+  - name: skills
+    label: Skills
+    type: file
+    path: _data/skills.yml
+    format: yaml
+    list: true
+    fields:
+      - name: category
+        label: Category
+        type: string
+        required: true
+      - name: items
+        label: Skills (comma-separated)
+        type: text

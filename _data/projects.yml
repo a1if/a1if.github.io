@@ -1,0 +1,73 @@
+- title: "ECG Multi-Agent Triage: Heterogeneous Edge AI for Clinical Decision Support"
+  url: ""
+  featured: true
+  live_demo: true
+  badges:
+    - MSc dissertation
+  description: >-
+    A two-agent ECG triage system. A CNN-LSTM perception agent classifies heartbeats and passes events to
+    a frozen Gemma reasoning agent, either as text or as learned virtual tokens. It includes guardrails,
+    an orchestrator and clinician Q&A. This is a research prototype.
+  points:
+    - "**24–78%** faster LLM prompt processing than compact text, with balanced accuracy of **0.83 vs 0.73** at 10 and 20 events."
+    - "**10–30%** higher throughput and **12–28%** less energy per decision on a 12 GB GPU, measured with NVML at 100 Hz."
+  links:
+    - label: Try the live demo ↗
+      url: https://ecg-multi-agent-triage.streamlit.app/
+      primary: true
+    - label: App code
+      url: https://github.com/a1if/ecg-multi-agent-triage
+      primary: false
+    - label: Research code
+      url: https://github.com/a1if/Heterogeneous-Multi-Agent-Edge-AI-for-Clinical-Decision-Support
+      primary: false
+  note: Hosted on Streamlit's free tier. If the app is asleep, click "wake up" and give it about 30 seconds.
+  language: Python
+  stack: PyTorch · Gemma · Streamlit
+  tags: []
+
+- title: Fine-Tuned Small LLM for Multi-Hop RAG
+  url: https://github.com/a1if/qlora-multihop-rag
+  featured: false
+  live_demo: false
+  badges: []
+  description: ""
+  points:
+    - "LoRA fine-tuned Qwen3-1.7B: exact match **10.4 → 58.4** on HotpotQA, matching a **4.7× larger** Qwen3-8B with ~5× smaller weights at ~8× the throughput."
+    - "Hybrid retrieval (BM25 + FAISS, reranking) with multi-hop search: evidence recall **54% → 89%**, with citations and abstention."
+    - "MCP server with typed tools and OpenTelemetry tracing; tool-use fine-tuned LangGraph agent (+19.7 F1)."
+  links: []
+  note: ""
+  language: Python
+  stack: PyTorch · PEFT · LangGraph · MCP · FAISS
+  tags: []
+
+- title: Multimodal RAG Application
+  url: https://github.com/a1if/-RAG-System
+  featured: false
+  live_demo: false
+  badges: []
+  description: ""
+  points:
+    - "Bilingual (Bangla & English) RAG on a custom FAISS vector store."
+    - "FastAPI backend with real-time web search and an adaptive deep-reasoning mode."
+    - "Dynamic routing between Gemini 2.5 Flash and gpt-oss-20b to balance quality and rate limits."
+  links: []
+  note: ""
+  language: Python
+  stack: FastAPI · Streamlit · FAISS
+  tags: []
+
+- title: AI Interior Visualizer
+  url: https://github.com/a1if/Nano-Banana-Hackathon
+  featured: false
+  live_demo: false
+  badges: []
+  description: An interior design visualizer built for the Nano Banana hackathon, powered by Gemini 2.5 Flash Image.
+  points: []
+  links: []
+  note: ""
+  language: TypeScript
+  stack: ""
+  tags:
+    - hackathon

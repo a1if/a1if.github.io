@@ -1,0 +1,14 @@
+- category: llms & rag
+  items: LoRA/QLoRA, PEFT, TRL, Hugging Face Transformers, LangChain, LangGraph, Model Context Protocol (MCP), Ollama, FAISS, ChromaDB, hybrid search & reranking, Sentence Transformers, Gemini API, LLM evaluation (EM/F1, faithfulness, BLEU/ROUGE/BERTScore)
+
+- category: ml & dl
+  items: PyTorch, TensorFlow, Keras, scikit-learn, Pandas, NumPy, CNNs, LSTMs
+
+- category: apis & apps
+  items: FastAPI, Flask, Django, Streamlit, Gradio
+
+- category: mlops
+  items: Git, GitHub Actions, Docker, MLflow, DVC, OpenTelemetry
+
+- category: languages
+  items: Python, C, C++, Java, JavaScript, SQL, HTML, CSS
