@@ -1,0 +1,50 @@
+title: Alif Tasbir
+tagline: AI/ML Engineer
+description: Alif Tasbir — AI/ML engineer writing about deep learning, LLMs and agents, and healthcare AI.
+url: https://a1if.github.io
+baseurl: ""
+author:
+  name: Alif Tasbir
+  email: aliftasbir@gmail.com
+  url: https://a1if.github.io
+social:
+  name: Alif Tasbir
+  links:
+    - https://github.com/a1if
+    - https://www.linkedin.com/in/alif-tasbir-16365141b/
+    - https://x.com/tasbir_alif
+    - https://orcid.org/0000-0001-6697-8974
+twitter:
+  username: tasbir_alif
+logo: https://github.com/a1if.png
+lang: en_GB
+timezone: Europe/London
+
+# Blog posts live at /blog/<post-name>/
+permalink: /blog/:title/
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+feed:
+  path: feed.xml
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - .pages.yml

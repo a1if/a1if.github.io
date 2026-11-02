@@ -1,0 +1,35 @@
+---
+layout: default
+---
+{%- assign words = content | strip_html | number_of_words -%}
+{%- assign minutes = words | divided_by: 200 | at_least: 1 -%}
+<article>
+  <header class="page-head">
+    <h1>{{ page.title | escape }}</h1>
+    <div class="meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
+      <span>·</span>
+      <span>{{ minutes }} min read</span>
+      {%- for tag in page.tags %}
+      <span class="tag">{{ tag | escape }}</span>
+      {%- endfor %}
+    </div>
+  </header>
+
+  <div class="prose">
+    {{ content }}
+  </div>
+
+  {%- if page.previous or page.next %}
+  <nav class="post-foot" aria-label="More posts">
+    {%- if page.previous %}
+    <a class="prev" href="{{ page.previous.url | relative_url }}">← {{ page.previous.title | escape }}</a>
+    {%- endif %}
+    {%- if page.next %}
+    <a class="next" href="{{ page.next.url | relative_url }}">{{ page.next.title | escape }} →</a>
+    {%- endif %}
+  </nav>
+  {%- endif %}
+
+  <a class="back" href="{{ '/blog/' | relative_url }}">← all posts</a>
+</article>

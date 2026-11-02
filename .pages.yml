@@ -1,0 +1,39 @@
+# Pages CMS configuration — https://pagescms.org
+# Lets you write and publish blog posts from a browser editor at https://app.pagescms.org
+
+media:
+  input: images/blog
+  output: /images/blog
+
+content:
+  - name: posts
+    label: Blog posts
+    type: collection
+    path: _posts
+    filename: "{year}-{month}-{day}-{title}.md"
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+      - name: date
+        label: Publish date
+        type: date
+        required: true
+      - name: description
+        label: Summary
+        description: One or two sentences. Shown on the blog list, in Google results and in LinkedIn previews.
+        type: text
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+      - name: published
+        label: Published
+        description: Tick to make the post live. Untick to keep it as a draft.
+        type: boolean
+      - name: body
+        label: Post
+        type: rich-text
+        options:
+          format: markdown

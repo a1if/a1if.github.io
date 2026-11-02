@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% seo %}
+<link rel="icon" href="https://github.com/a1if.png">
+<link rel="stylesheet" href="{{ '/css/site.css' | relative_url }}">
+{% feed_meta %}
+<script>
+  try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="{{ '/' | relative_url }}">~/a1if</a>
+    <div class="links">
+      <a href="{{ '/#about' | relative_url }}">about</a>
+      <a href="{{ '/#projects' | relative_url }}">projects</a>
+      <a href="{{ '/blog/' | relative_url }}">blog</a>
+      <a href="{{ '/#experience' | relative_url }}">experience</a>
+      <a href="{{ '/#contact' | relative_url }}">contact</a>
+    </div>
+    <button id="theme" aria-label="Toggle colour theme" title="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<main class="wrap">
+{{ content }}
+</main>
+
+<footer>
+  <div class="wrap">© {{ site.time | date: "%Y" }} Alif Tasbir · <a href="{{ '/feed.xml' | relative_url }}">rss</a> · hosted on GitHub Pages</div>
+</footer>
+
+<!-- Privacy-friendly analytics (GoatCounter — no cookies, GDPR-friendly). Dashboard: https://a1if.goatcounter.com -->
+<script data-goatcounter="https://a1if.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+  document.getElementById("theme").addEventListener("click", () => {
+    const root = document.documentElement;
+    const cur = root.dataset.theme || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+    const next = cur === "dark" ? "light" : "dark";
+    root.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (e) {}
+  });
+</script>
+</body>
+</html>
