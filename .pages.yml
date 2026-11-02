@@ -52,6 +52,16 @@ content:
         label: Photo
         description: Square photos look best. Leave empty to use your GitHub profile picture.
         type: image
+      - name: cover
+        label: Cover photo
+        description: Optional wide photo behind the top section (e.g. 1600×600). Leave empty for no cover.
+        type: image
+      - name: cover_position
+        label: Cover focus
+        description: Which part of the cover photo stays visible when it's cropped.
+        type: select
+        options:
+          values: [center, top, bottom]
       - name: role
         label: Role line
         description: The line under your name.

@@ -48,24 +48,45 @@ nav .links a:hover { color: var(--fg); text-decoration: none; }
 @media (max-width: 600px) { nav .links { display: none; } }
 
 /* hero */
-header { padding: 72px 0 48px; display: flex; gap: 28px; align-items: center; }
-header img {
+.hero { padding: 72px 0 48px; display: flex; gap: 28px; align-items: center; }
+.hero img {
   width: 112px; height: 112px; border-radius: 50%; object-fit: cover;
   border: 1px solid var(--border); flex-shrink: 0;
 }
-header h1 { font-size: 32px; line-height: 1.2; margin: 0 0 4px; letter-spacing: -0.02em; }
-header .role { font-family: var(--mono); color: var(--muted); font-size: 14px; margin: 0 0 12px; }
-header .status {
+.hero h1 { font-size: 32px; line-height: 1.2; margin: 0 0 4px; letter-spacing: -0.02em; }
+.hero .role { font-family: var(--mono); color: var(--muted); font-size: 14px; margin: 0 0 12px; }
+.hero .status {
   display: inline-flex; align-items: center; gap: 8px; font-size: 13px;
   border: 1px solid var(--border); border-radius: 14px; padding: 3px 12px; color: var(--muted);
 }
-header .status::before {
+.hero .status::before {
   content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green);
 }
 @media (max-width: 600px) {
-  header { flex-direction: column; align-items: flex-start; padding-top: 48px; }
-  header img { width: 88px; height: 88px; }
+  .hero { flex-direction: column; align-items: flex-start; padding-top: 48px; }
+  .hero img { width: 88px; height: 88px; }
 }
+
+/* optional cover photo behind the hero (set in Pages CMS → Profile & intro) */
+body { overflow-x: clip; }
+.hero.has-cover { position: relative; isolation: isolate; padding-top: 210px; }
+.hero.has-cover::before, .hero.has-cover::after {
+  content: ""; position: absolute; z-index: -1; top: 0; bottom: 0;
+  left: 50%; width: 100vw; transform: translateX(-50%);
+}
+.hero.has-cover::before { background: var(--cover) var(--cover-pos, center) / cover no-repeat; }
+.hero.has-cover::after {
+  /* fades the photo into the page so the text stays readable in light and dark mode */
+  background: linear-gradient(to bottom,
+    color-mix(in srgb, var(--bg) 0%, transparent) 0%,
+    color-mix(in srgb, var(--bg) 20%, transparent) 32%,
+    color-mix(in srgb, var(--bg) 82%, transparent) 50%,
+    color-mix(in srgb, var(--bg) 95%, transparent) 62%,
+    var(--bg) 100%);
+}
+.hero.has-cover img { border: 3px solid var(--bg); box-shadow: 0 2px 12px rgb(0 0 0 / .25); }
+.hero.has-cover .status { background: color-mix(in srgb, var(--bg) 80%, transparent); }
+@media (max-width: 600px) { .hero.has-cover { padding-top: 140px; } }
 
 .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 

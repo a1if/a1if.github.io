@@ -36,7 +36,8 @@
 
 <main class="wrap">
   {%- assign profile = site.data.profile %}
-  <header>
+  {%- assign cover = profile.cover | default: "" %}
+  <header class="hero{% if cover != "" %} has-cover{% endif %}"{% if cover != "" %} style="--cover: url('{{ cover | relative_url }}'); --cover-pos: {{ profile.cover_position | default: 'center' }};"{% endif %}>
     <img src="{{ photo }}" alt="{{ profile.name | escape }}">
     <div>
       <h1>{{ profile.name | escape }}</h1>
