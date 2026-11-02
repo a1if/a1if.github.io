@@ -2,8 +2,8 @@
 # Edit your blog and every homepage section from a browser at https://app.pagescms.org
 
 media:
-  input: images/blog
-  output: /images/blog
+  input: images
+  output: /images
 
 content:
   - name: posts
@@ -48,6 +48,10 @@ content:
         label: Name
         type: string
         required: true
+      - name: photo
+        label: Photo
+        description: Square photos look best. Leave empty to use your GitHub profile picture.
+        type: image
       - name: role
         label: Role line
         description: The line under your name.

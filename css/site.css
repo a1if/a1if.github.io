@@ -50,7 +50,7 @@ nav .links a:hover { color: var(--fg); text-decoration: none; }
 /* hero */
 header { padding: 72px 0 48px; display: flex; gap: 28px; align-items: center; }
 header img {
-  width: 112px; height: 112px; border-radius: 50%;
+  width: 112px; height: 112px; border-radius: 50%; object-fit: cover;
   border: 1px solid var(--border); flex-shrink: 0;
 }
 header h1 { font-size: 32px; line-height: 1.2; margin: 0 0 4px; letter-spacing: -0.02em; }

@@ -10,8 +10,9 @@
 <meta name="description" content="Alif Tasbir — AI/ML engineer building and deploying machine learning systems, from deep learning research to production applications. MSc Artificial Intelligence, De Montfort University.">
 <meta property="og:title" content="Alif Tasbir · AI/ML Engineer">
 <meta property="og:description" content="Machine learning engineer: deep learning, LLMs and agents, and healthcare AI.">
-<meta property="og:image" content="https://github.com/a1if.png">
-<link rel="icon" href="https://github.com/a1if.png">
+{%- assign photo = site.data.profile.photo | default: "https://github.com/a1if.png" %}
+<meta property="og:image" content="{{ photo | absolute_url }}">
+<link rel="icon" href="{{ photo | absolute_url }}">
 <link rel="stylesheet" href="/css/site.css">
 <script>
   try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
@@ -36,7 +37,7 @@
 <main class="wrap">
   {%- assign profile = site.data.profile %}
   <header>
-    <img src="https://github.com/a1if.png" alt="{{ profile.name | escape }}">
+    <img src="{{ photo }}" alt="{{ profile.name | escape }}">
     <div>
       <h1>{{ profile.name | escape }}</h1>
       <p class="role">{{ profile.role | escape }}</p>
