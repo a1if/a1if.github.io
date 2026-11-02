@@ -1,12 +1,12 @@
 ---
 title: Example post (formatting guide)
 date: 2026-11-02
-description: A template showing how headings, code, quotes, tables and images look on the blog. It stays unpublished, so it never appears on the live site.
+description: A template showing how headings, code, quotes, tables and images
+  look on the blog. It stays unpublished, so it never appears on the live site.
 tags:
   - example
 published: false
 ---
-
 This post is a **template**. It's marked as unpublished, so it never shows on the live site. Duplicate it or start a new post, then delete this one when you no longer need it.
 
 ## A section heading
@@ -35,10 +35,12 @@ def accuracy(logits: torch.Tensor, labels: torch.Tensor) -> float:
 
 ## Tables
 
+
 | Model | Metric A | Metric B |
-|---|---|---|
+| --------- | -------- | -------- |
 | Model one | 0.00 | 0.00 |
 | Model two | 0.00 | 0.00 |
+
 
 ## Images
 
