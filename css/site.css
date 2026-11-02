@@ -57,7 +57,7 @@ header h1 { font-size: 32px; line-height: 1.2; margin: 0 0 4px; letter-spacing: 
 header .role { font-family: var(--mono); color: var(--muted); font-size: 14px; margin: 0 0 12px; }
 header .status {
   display: inline-flex; align-items: center; gap: 8px; font-size: 13px;
-  border: 1px solid var(--border); border-radius: 999px; padding: 3px 12px; color: var(--muted);
+  border: 1px solid var(--border); border-radius: 14px; padding: 3px 12px; color: var(--muted);
 }
 header .status::before {
   content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--green);
