@@ -55,9 +55,9 @@
   badges: []
   description: ""
   points:
-    - "Bilingual (Bangla & English) RAG on a custom FAISS vector store."
-    - "FastAPI backend with real-time web search and an adaptive deep-reasoning mode."
-    - "Dynamic routing between Gemini 2.5 Flash and gpt-oss-20b to balance quality and rate limits."
+    - "Bilingual (Bangla & English) RAG over PDFs, scans, Office files and images, with Tesseract OCR, answering in the user's language with page-level citations."
+    - "Hybrid retrieval: BM25 plus multilingual-e5 embeddings in FAISS, merged with reciprocal rank fusion, in per-session document stores."
+    - "LLM-routed web search: the model decides when fresh information is needed, rewrites the query and sizes the Tavily search. Streams answers from Gemini or Groq (gpt-oss-20b) via FastAPI + Streamlit."
   links: []
   note: ""
   language: Python
