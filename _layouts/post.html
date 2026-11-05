@@ -12,7 +12,7 @@ layout: default
       <span>{{ minutes }} min read</span>
       <span class="views" hidden>· <span id="view-count"></span></span>
       {%- for tag in page.tags %}
-      <span class="tag">{{ tag | escape }}</span>
+      <a class="tag" href="{{ '/blog/tags/' | relative_url }}#{{ tag | slugify }}">{{ tag | escape }}</a>
       {%- endfor %}
     </div>
   </header>
@@ -20,6 +20,13 @@ layout: default
   {%- if page.image and page.image != "" %}
   <img class="post-cover" src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: '' | escape }}">
   {%- endif %}
+
+  <nav class="toc" id="toc" aria-label="On this page" hidden>
+    <details open>
+      <summary>On this page</summary>
+      <ol></ol>
+    </details>
+  </nav>
 
   <div class="prose">
     {{ content }}
@@ -44,6 +51,61 @@ layout: default
 </article>
 
 <script>
+  (function () {
+    var prose = document.querySelector(".prose");
+
+    // Table of contents: built from the post's headings, shown when there are 3 or more.
+    var heads = prose.querySelectorAll("h2[id], h3[id]");
+    if (heads.length >= 3) {
+      var list = document.querySelector("#toc ol");
+      heads.forEach(function (h) {
+        var li = document.createElement("li");
+        if (h.tagName === "H3") li.className = "sub";
+        var a = document.createElement("a");
+        a.href = "#" + h.id;
+        a.textContent = h.textContent;
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+      document.getElementById("toc").hidden = false;
+    }
+
+    // Copy button on every code block.
+    prose.querySelectorAll("pre").forEach(function (pre) {
+      var box = pre.closest("div.highlighter-rouge") || pre;
+      box.classList.add("has-copy");
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "copy-btn";
+      btn.textContent = "Copy";
+      btn.setAttribute("aria-label", "Copy code to clipboard");
+      btn.addEventListener("click", function () {
+        var code = pre.querySelector("code") || pre;
+        function done(msg) {
+          btn.textContent = msg;
+          setTimeout(function () { btn.textContent = "Copy"; }, 1600);
+        }
+        function fallback() {
+          // Older method for browsers that block the clipboard API: select the code and copy it.
+          var range = document.createRange();
+          range.selectNodeContents(code);
+          var sel = getSelection();
+          sel.removeAllRanges();
+          sel.addRange(range);
+          var ok = false;
+          try { ok = document.execCommand("copy"); } catch (e) {}
+          if (ok) { sel.removeAllRanges(); done("Copied"); } else { btn.textContent = "Press Ctrl+C"; }
+        }
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(code.innerText.trimEnd()).then(function () { done("Copied"); }, fallback);
+        } else {
+          fallback();
+        }
+      });
+      box.appendChild(btn);
+    });
+  })();
+
   // Public view count from GoatCounter. Shows nothing until "Allow adding visitor counts
   // on your website" is ticked in GoatCounter settings, or while the post has no views yet.
   fetch("https://a1if.goatcounter.com/counter/" + encodeURIComponent(location.pathname) + ".json")

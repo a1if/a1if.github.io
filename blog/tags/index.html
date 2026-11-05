@@ -1,0 +1,35 @@
+---
+layout: default
+title: Blog tags
+description: Blog posts by Alif Tasbir, grouped by topic.
+---
+{%- assign tags = site.tags | sort %}
+<header class="page-head">
+  <h1>Tags</h1>
+  <p>Posts grouped by topic. <a href="{{ '/blog/' | relative_url }}">All posts</a></p>
+</header>
+
+{%- if tags.size > 0 %}
+<div class="tag-cloud">
+  {%- for tag in tags %}
+  <a class="tag" href="#{{ tag[0] | slugify }}">{{ tag[0] | escape }} <span class="count">{{ tag[1].size }}</span></a>
+  {%- endfor %}
+</div>
+
+{%- for tag in tags %}
+<section class="tag-group" id="{{ tag[0] | slugify }}">
+  <h2>{{ tag[0] | escape }}</h2>
+  <ul class="post-list">
+    {%- for post in tag[1] %}
+    <li>
+      <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time>
+      <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
+      {%- if post.description %}<p>{{ post.description | escape }}</p>{% endif %}
+    </li>
+    {%- endfor %}
+  </ul>
+</section>
+{%- endfor %}
+{%- else %}
+<p class="empty">No tags yet. Tags you add to posts in Pages CMS show up here.</p>
+{%- endif %}

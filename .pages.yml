@@ -108,6 +108,14 @@ content:
         label: Title link
         description: Usually the GitHub repo. Leave empty for no link.
         type: string
+      - name: image
+        label: Image
+        description: Optional screenshot, diagram or GIF shown at the top of the card. Landscape works best; keep it under ~1 MB.
+        type: image
+      - name: image_alt
+        label: Image description
+        description: Short description for screen readers, e.g. "Streamlit app showing ECG triage results".
+        type: string
       - name: featured
         label: Featured (full-width highlighted card)
         type: boolean
