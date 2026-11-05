@@ -3,11 +3,6 @@
   icon: email
   primary: true
 
-- label: Download CV
-  url: Alif_Tasbir_CV.pdf
-  icon: cv
-  primary: false
-
 - label: GitHub
   url: https://github.com/a1if
   icon: github
