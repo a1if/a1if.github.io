@@ -1,6 +1,8 @@
 - title: "ECG Multi-Agent Triage: Heterogeneous Edge AI for Clinical Decision Support"
   url: ""
   featured: true
+  image: /images/ecg-triage-demo.webp
+  image_alt: "Demo of the ECG triage app: analysing a recording, the two agents' conversation, adapter vs text charts, and clinician Q&A"
   live_demo: true
   badges:
     - MSc dissertation

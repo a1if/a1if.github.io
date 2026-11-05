@@ -4,7 +4,7 @@ Run by .github/workflows/optimize-images.yml whenever images change (e.g. upload
 Pages CMS). Files keep their names, so links in Pages CMS keep working.
 - JPEG / PNG / WebP larger than MAX_SIDE px or MAX_BYTES are resized and re-encoded.
 - Camera metadata (EXIF, including any GPS location) is removed.
-- GIFs and SVGs are left alone (animated GIFs would lose their animation).
+- GIFs, SVGs and animated WebP/PNG files are left alone (re-saving would lose the animation).
 """
 import io
 import os
@@ -25,6 +25,8 @@ for dirpath, _, files in os.walk(ROOT):
         path = os.path.join(dirpath, name)
         before = os.path.getsize(path)
         with Image.open(path) as im:
+            if getattr(im, "is_animated", False):
+                continue  # animated WebP/PNG: re-saving would keep only the first frame
             has_exif = bool(im.getexif())
             too_big = max(im.size) > MAX_SIDE
             if not (too_big or before > MAX_BYTES or has_exif):
