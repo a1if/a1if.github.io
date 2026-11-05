@@ -1,0 +1,68 @@
+name: Check links
+
+# Every Monday, checks the links on the live site and in the content files.
+# If any are broken, it opens (or updates) a GitHub issue labelled "broken-links",
+# which GitHub emails to you. Close the issue once the links are fixed.
+on:
+  schedule:
+    - cron: "23 6 * * 1"   # Mondays, 06:23 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check links
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          fail: false
+          output: lychee-report.md
+          # LinkedIn, X and Elsevier block automated checkers, so they always look broken; skip them.
+          args: >-
+            --no-progress
+            --max-retries 3
+            --timeout 30
+            --accept '200..=299,403,429'
+            --exclude '^mailto:'
+            --exclude 'linkedin\.com'
+            --exclude '(^|//|\.)x\.com'
+            --exclude 'twitter\.com'
+            --exclude 'doi\.org/10\.1016/'
+            --exclude 'elsevier\.com'
+            --exclude 'sciencedirect\.com'
+            --exclude 'goatcounter\.com/count'
+            --exclude 'fonts\.(googleapis|gstatic)\.com'
+            https://a1if.github.io/
+            https://a1if.github.io/blog/
+            https://a1if.github.io/blog/tags/
+            _data/*.yml
+            _posts/*.md
+
+      - name: Open or update an issue if links are broken
+        if: steps.lychee.outputs.exit_code != 0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh label create broken-links --color d73a4a --description "Found by the weekly link check" --force
+          existing=$(gh issue list --label broken-links --state open --json number --jq '.[0].number // empty')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file lychee-report.md
+          else
+            gh issue create --title "Broken links on the portfolio" --label broken-links --body-file lychee-report.md
+          fi
+
+      - name: Close the issue when everything passes again
+        if: steps.lychee.outputs.exit_code == 0
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(gh issue list --label broken-links --state open --json number --jq '.[].number' 2>/dev/null || true); do
+            gh issue close "$n" --comment "All links pass again in the latest weekly check."
+          done

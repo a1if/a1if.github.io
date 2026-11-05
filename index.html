@@ -18,6 +18,10 @@
 <link rel="icon" href="{{ photo | absolute_url }}">
 <meta name="google-site-verification" content="lOrtbMkmI9PKMnTGUEIebqVJxrsdMiP5Y_9hNReUpP0">
 <link rel="canonical" href="{{ site.url }}/">
+{%- assign hero_cover = site.data.profile.cover | default: "" %}
+{%- if hero_cover != "" %}
+<link rel="preload" as="image" href="{{ hero_cover | relative_url }}" fetchpriority="high">
+{%- endif %}
 <meta property="og:url" content="{{ site.url }}/">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="{{ site.title }}">
@@ -78,7 +82,7 @@
   {%- assign profile = site.data.profile %}
   {%- assign cover = profile.cover | default: "" %}
   <header class="hero{% if cover != "" %} has-cover{% endif %}"{% if cover != "" %} style="--cover: url('{{ cover | relative_url }}'); --cover-pos: {{ profile.cover_position | default: 'center' }};"{% endif %}>
-    <img src="{{ photo }}" alt="{{ profile.name | escape }}">
+    <img src="{% if site.data.profile.photo and site.data.profile.photo != "" %}{{ site.data.profile.photo | relative_url }}{% else %}https://github.com/a1if.png?size=240{% endif %}" alt="{{ profile.name | escape }}" width="112" height="112" fetchpriority="high">
     <div>
       <h1>{{ profile.name | escape }}</h1>
       <p class="role">{{ profile.role | escape }}</p>

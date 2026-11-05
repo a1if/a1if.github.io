@@ -6,6 +6,8 @@
   --muted: #59636e;
   --accent: #0969da;
   --green: #1a7f37;
+  --btn-primary: #1f883d;
+  --btn-primary-hover: #1a7f37;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", Helvetica, Arial, sans-serif;
 }
@@ -13,11 +15,13 @@
   :root:not([data-theme="light"]) {
     --bg: #0d1117; --bg-subtle: #151b23; --border: #3d444d;
     --fg: #f0f6fc; --muted: #9198a1; --accent: #4493f8; --green: #3fb950;
+    --btn-primary: #238636; --btn-primary-hover: #1a7f37;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0d1117; --bg-subtle: #151b23; --border: #3d444d;
   --fg: #f0f6fc; --muted: #9198a1; --accent: #4493f8; --green: #3fb950;
+    --btn-primary: #238636; --btn-primary-hover: #1a7f37;
 }
 
 * { box-sizing: border-box; }
@@ -157,7 +161,8 @@ p { margin: 0 0 12px; }
 }
 .btn:hover { text-decoration: none; border-color: var(--muted); }
 .btn svg { fill: currentColor; }
-.btn.primary { background: var(--green); border-color: transparent; color: #fff; }
+.btn.primary { background: var(--btn-primary); border-color: transparent; color: #fff; }
+.btn.primary:hover { background: var(--btn-primary-hover); }
 
 /* contact form */
 .form { display: grid; gap: 12px; max-width: 520px; margin-bottom: 24px; }
@@ -308,3 +313,10 @@ a.tag:hover { color: var(--accent); border-color: var(--accent); text-decoration
 .card.featured .card-img { margin: -20px -20px 16px; }
 .card.featured .card-img img { aspect-ratio: 2 / 1; }
 a.card-img:hover img { opacity: .92; }
+
+/* links inside running text: underline so they don't rely on colour alone */
+main p a:not(.btn):not(.tag), footer a, .prose li a, .prose td a {
+  text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 2px;
+  text-decoration-color: color-mix(in srgb, currentColor 45%, transparent);
+}
+main p a:not(.btn):not(.tag):hover, footer a:hover, .prose li a:hover, .prose td a:hover { text-decoration-color: currentColor; }

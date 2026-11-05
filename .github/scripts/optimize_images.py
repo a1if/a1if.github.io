@@ -12,8 +12,8 @@ import sys
 
 from PIL import Image, ImageOps
 
-MAX_SIDE = 2000          # longest edge in pixels
-MAX_BYTES = 500 * 1024   # anything bigger than this gets re-encoded
+MAX_SIDE = 1600          # longest edge in pixels
+MAX_BYTES = 350 * 1024   # anything bigger than this gets re-encoded
 ROOT = sys.argv[1] if len(sys.argv) > 1 else "images"
 
 changed = []
