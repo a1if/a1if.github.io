@@ -7,6 +7,9 @@
 <link rel="icon" href="{{ site.data.profile.photo | default: 'https://github.com/a1if.png' | absolute_url }}">
 <link rel="stylesheet" href="{{ '/css/site.css' | relative_url }}">
 {% feed_meta %}
+{%- if page.image == nil or page.image == "" %}
+<meta property="og:image" content="{{ site.data.profile.photo | default: 'https://github.com/a1if.png' | absolute_url }}">
+{%- endif %}
 <script>
   try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
@@ -32,7 +35,7 @@
 </main>
 
 <footer>
-  <div class="wrap">© {{ site.time | date: "%Y" }} Alif Tasbir · <a href="{{ '/feed.xml' | relative_url }}">rss</a> · hosted on GitHub Pages</div>
+  <div class="wrap">© {{ site.time | date: "%Y" }} Alif Tasbir · <a href="{{ '/blog/' | relative_url }}">blog</a> · <a href="{{ '/feed.xml' | relative_url }}">rss</a> · hosted on GitHub Pages</div>
 </footer>
 
 <!-- Privacy-friendly analytics (GoatCounter — no cookies, GDPR-friendly). Dashboard: https://a1if.goatcounter.com -->

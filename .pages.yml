@@ -24,6 +24,14 @@ content:
         label: Summary
         description: One or two sentences. Shown on the blog list, in Google results and in LinkedIn previews.
         type: text
+      - name: image
+        label: Cover image
+        description: Optional. Shown at the top of the post, on the blog list and in LinkedIn/X link previews. Wide images (about 1200×630) work best.
+        type: image
+      - name: image_alt
+        label: Cover image description
+        description: A short description of the image for screen readers, e.g. "Diagram of the two-agent pipeline".
+        type: string
       - name: tags
         label: Tags
         type: string

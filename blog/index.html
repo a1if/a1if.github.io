@@ -13,6 +13,9 @@ description: Writing by Alif Tasbir on deep learning, LLMs and agents, and healt
   <ul class="post-list">
     {%- for post in site.posts %}
     <li>
+      {%- if post.image and post.image != "" %}
+      <a href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true"><img class="thumb" src="{{ post.image | relative_url }}" alt="" loading="lazy"></a>
+      {%- endif %}
       <time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%-d %b %Y" }}</time>
       <h3><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></h3>
       {%- if post.description %}<p>{{ post.description | escape }}</p>{% endif %}

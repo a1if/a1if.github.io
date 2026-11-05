@@ -264,3 +264,13 @@ footer { border-top: 1px solid var(--border); padding: 24px 0 40px; color: var(-
 /* comments (giscus) */
 .comments { border-top: 1px solid var(--border); padding: 32px 0 8px; margin-top: 24px; }
 .comments .giscus { min-height: 120px; }
+
+/* post cover images */
+.post-cover {
+  display: block; width: 100%; max-height: 420px; object-fit: cover;
+  border-radius: 8px; border: 1px solid var(--border); margin: 0 0 32px;
+}
+.post-list .thumb {
+  display: block; width: 100%; aspect-ratio: 1200 / 630; object-fit: cover;
+  border-radius: 6px; border: 1px solid var(--border); margin: 0 0 12px;
+}

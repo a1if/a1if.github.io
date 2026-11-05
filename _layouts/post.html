@@ -17,6 +17,10 @@ layout: default
     </div>
   </header>
 
+  {%- if page.image and page.image != "" %}
+  <img class="post-cover" src="{{ page.image | relative_url }}" alt="{{ page.image_alt | default: '' | escape }}">
+  {%- endif %}
+
   <div class="prose">
     {{ content }}
   </div>
