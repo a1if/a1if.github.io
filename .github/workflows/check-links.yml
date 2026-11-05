@@ -25,6 +25,7 @@ jobs:
           fail: false
           output: lychee-report.md
           # LinkedIn, X and Elsevier block automated checkers, so they always look broken; skip them.
+          # Streamlit apps answer bots with a 303 redirect (sleeping app / auth check), so skip those too.
           args: >-
             --no-progress
             --max-retries 3
@@ -37,6 +38,7 @@ jobs:
             --exclude 'doi\.org/10\.1016/'
             --exclude 'elsevier\.com'
             --exclude 'sciencedirect\.com'
+            --exclude 'streamlit\.app'
             --exclude 'goatcounter\.com/count'
             --exclude 'fonts\.(googleapis|gstatic)\.com'
             https://a1if.github.io/
