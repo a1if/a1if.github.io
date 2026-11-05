@@ -8,7 +8,9 @@
 <link rel="stylesheet" href="{{ '/css/site.css' | relative_url }}">
 {% feed_meta %}
 {%- if page.image == nil or page.image == "" %}
-<meta property="og:image" content="{{ site.data.profile.photo | default: 'https://github.com/a1if.png' | absolute_url }}">
+<meta property="og:image" content="{{ '/images/social-card.jpg' | absolute_url }}">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 {%- endif %}
 <script>
   try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}

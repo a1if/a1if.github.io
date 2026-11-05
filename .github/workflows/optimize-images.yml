@@ -1,0 +1,50 @@
+name: Optimise images
+
+# Shrinks large uploads in images/ (for example phone photos added through Pages CMS)
+# and strips camera metadata. Files keep their names, so nothing else needs to change.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "images/**"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+
+concurrency:
+  group: optimise-images
+  cancel-in-progress: false
+
+jobs:
+  optimise:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Optimise images
+        run: |
+          pip install --quiet pillow
+          python .github/scripts/optimize_images.py images
+
+      - name: Commit smaller images and rebuild the site
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- images; then
+            echo "Nothing to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add images
+          git commit -m "Optimise uploaded images"
+          git pull --rebase --quiet
+          git push
+          # Pushes made by this workflow may not start a Pages build on their own, so request one.
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" --silent || echo "Pages build request failed; it will rebuild on the next change."
