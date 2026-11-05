@@ -44,6 +44,7 @@
     const next = cur === "dark" ? "light" : "dark";
     root.dataset.theme = next;
     try { localStorage.setItem("theme", next); } catch (e) {}
+    document.dispatchEvent(new CustomEvent("themechange", { detail: next }));
   });
 </script>
 </body>

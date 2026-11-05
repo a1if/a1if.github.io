@@ -10,6 +10,7 @@ layout: default
       <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%-d %B %Y" }}</time>
       <span>·</span>
       <span>{{ minutes }} min read</span>
+      <span class="views" hidden>· <span id="view-count"></span></span>
       {%- for tag in page.tags %}
       <span class="tag">{{ tag | escape }}</span>
       {%- endfor %}
@@ -31,5 +32,23 @@ layout: default
   </nav>
   {%- endif %}
 
+  {%- unless page.comments_off %}
+  {% include comments.html %}
+  {%- endunless %}
+
   <a class="back" href="{{ '/blog/' | relative_url }}">← all posts</a>
 </article>
+
+<script>
+  // Public view count from GoatCounter. Shows nothing until "Allow adding visitor counts
+  // on your website" is ticked in GoatCounter settings, or while the post has no views yet.
+  fetch("https://a1if.goatcounter.com/counter/" + encodeURIComponent(location.pathname) + ".json")
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (d) {
+      if (!d || !d.count) return;
+      var n = String(d.count).trim();
+      document.getElementById("view-count").textContent = n + (n === "1" ? " view" : " views");
+      document.querySelector(".page-head .views").hidden = false;
+    })
+    .catch(function () {});
+</script>

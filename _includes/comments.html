@@ -1,0 +1,43 @@
+<!-- Comments and reactions via giscus (stored in this repo's GitHub Discussions → Announcements). -->
+<section class="comments" id="comments">
+  <h2>comments</h2>
+  <div class="giscus"></div>
+  <noscript><p class="empty">Comments need JavaScript.</p></noscript>
+</section>
+<script>
+  (function () {
+    function siteTheme() {
+      var t = document.documentElement.dataset.theme;
+      if (t) return t;
+      return matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    }
+    var s = document.createElement("script");
+    s.src = "https://giscus.app/client.js";
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    var attrs = {
+      "data-repo": "a1if/a1if.github.io",
+      "data-repo-id": "R_kgDOVD5xyg",
+      "data-category": "Announcements",
+      "data-category-id": "DIC_kwDOVD5xys4DKaV9",
+      "data-mapping": "pathname",
+      "data-strict": "1",
+      "data-reactions-enabled": "1",
+      "data-emit-metadata": "0",
+      "data-input-position": "bottom",
+      "data-theme": siteTheme(),
+      "data-lang": "en",
+      "data-loading": "lazy"
+    };
+    for (var k in attrs) s.setAttribute(k, attrs[k]);
+    document.querySelector("#comments .giscus").after(s);
+
+    // Keep the comment box in the same light/dark theme as the site.
+    function sync() {
+      var frame = document.querySelector("iframe.giscus-frame");
+      if (frame) frame.contentWindow.postMessage({ giscus: { setConfig: { theme: siteTheme() } } }, "https://giscus.app");
+    }
+    document.addEventListener("themechange", sync);
+    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", sync);
+  })();
+</script>

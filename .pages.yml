@@ -32,6 +32,10 @@ content:
         label: Published
         description: Tick to make the post live. Untick to keep it as a draft.
         type: boolean
+      - name: comments_off
+        label: Turn off comments
+        description: Tick to hide comments and reactions on this post.
+        type: boolean
       - name: body
         label: Post
         type: rich-text

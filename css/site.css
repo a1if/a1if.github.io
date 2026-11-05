@@ -260,3 +260,7 @@ footer { border-top: 1px solid var(--border); padding: 24px 0 40px; color: var(-
 .post-foot .next { margin-left: auto; text-align: right; }
 @media (max-width: 600px) { .post-foot a { max-width: 100%; } .post-foot .next { margin-left: 0; text-align: left; } }
 .back { font-family: var(--mono); font-size: 13px; display: inline-block; margin-top: 32px; }
+
+/* comments (giscus) */
+.comments { border-top: 1px solid var(--border); padding: 32px 0 8px; margin-top: 24px; }
+.comments .giscus { min-height: 120px; }
