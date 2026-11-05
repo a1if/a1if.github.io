@@ -1,0 +1,29 @@
+- label: aliftasbir@gmail.com
+  url: mailto:aliftasbir@gmail.com
+  icon: email
+  primary: true
+
+- label: Download CV
+  url: Alif_Tasbir_CV.pdf
+  icon: cv
+  primary: false
+
+- label: GitHub
+  url: https://github.com/a1if
+  icon: github
+  primary: false
+
+- label: LinkedIn
+  url: https://www.linkedin.com/in/alif-tasbir-16365141b/
+  icon: linkedin
+  primary: false
+
+- label: X
+  url: https://x.com/tasbir_alif
+  icon: x
+  primary: false
+
+- label: ORCID
+  url: https://orcid.org/0000-0001-6697-8974
+  icon: orcid
+  primary: false

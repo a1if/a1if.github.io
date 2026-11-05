@@ -92,6 +92,10 @@ content:
       - name: contact_intro
         label: Contact section text
         type: text
+      - name: blog_intro
+        label: Blog page intro
+        description: The line under the "Blog" heading.
+        type: text
 
   - name: projects
     label: Projects
@@ -253,3 +257,29 @@ content:
       - name: items
         label: Skills (comma-separated)
         type: text
+
+  - name: contact
+    label: Contact buttons
+    type: file
+    path: _data/contact.yml
+    format: yaml
+    list: true
+    fields:
+      - name: label
+        label: Button text
+        type: string
+        required: true
+      - name: url
+        label: Link
+        description: "Web links start with https://. Email: mailto:you@example.com. CV: Alif_Tasbir_CV.pdf"
+        type: string
+        required: true
+      - name: icon
+        label: Icon
+        description: Choose "cv" for the CV download, "other" for no icon.
+        type: select
+        options:
+          values: [email, cv, github, linkedin, x, orcid, scholar, website, other]
+      - name: primary
+        label: Green (main) button
+        type: boolean
