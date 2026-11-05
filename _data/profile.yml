@@ -6,14 +6,13 @@ status: Open to AI/ML Engineer roles · Leicester, UK · No visa sponsorship
   needed to start
 lead: I build machine learning systems end to end, from deep learning research
   to deployed applications.
-about: I'm an MSc Artificial Intelligence graduate from De Montfort University.
-  My work covers deep learning for biomedical signals such as EEG and ECG, using
-  CNNs, LSTMs and graph neural networks. It also covers LLM fine-tuning,
-  retrieval-augmented generation and multi-agent systems, as well as efficient
-  inference on edge hardware. I take models from experiment to product with
-  PyTorch, FastAPI, Docker and MLflow, and I've published three peer-reviewed
-  papers in clinical AI. I'm looking for an AI/ML Engineer role building machine
-  learning solutions for real-world problems.
+about: I'm an recent MSc Artificial Intelligence graduate from De Montfort
+  University. My work covers deep learning for biomedical signals such as EEG
+  and ECG, using CNNs, LSTMs and graph neural networks. It also covers LLM
+  fine-tuning, retrieval-augmented generation and multi-agent systems, as well
+  as efficient inference on edge hardware. I take models from experiment to
+  product with PyTorch, FastAPI, Docker and MLflow, and I've published three
+  peer-reviewed papers in clinical AI. I'm looking for an AI/ML Engineer role
+  building machine learning solutions for real-world problems.
 contact_intro: I'm open to AI/ML Engineer roles and research collaborations, so
   feel free to get in touch.
-blog_intro: I share my thoughts about the AI landscape here.
