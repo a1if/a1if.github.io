@@ -30,6 +30,8 @@
 
 - title: Fine-Tuned Small LLM for Multi-Hop RAG
   url: https://github.com/a1if/qlora-multihop-rag
+  image: /images/projects/multihop-rag.webp
+  image_alt: "Diagram: question, hybrid search with BM25, FAISS and reranking, LoRA fine-tuned Qwen3-1.7B writing the next search, answer with cited passages"
   featured: false
   live_demo: false
   badges: []
@@ -46,6 +48,8 @@
 
 - title: Multimodal RAG Application
   url: https://github.com/a1if/multimodal-rag-system
+  image: /images/projects/multimodal-rag.webp
+  image_alt: "Diagram: files of any type, OCR and chunking in Bangla and English, hybrid BM25 and FAISS search, Gemini or Groq answering in your language"
   featured: false
   live_demo: false
   badges: []
@@ -62,6 +66,8 @@
 
 - title: AI Interior Visualizer
   url: https://github.com/a1if/Nano-Banana-Hackathon
+  image: /images/projects/interior-visualizer.webp
+  image_alt: "Diagram: room photo, mark and describe changes, Gemini 2.5 Flash Image, two redesigns to choose from"
   featured: false
   live_demo: false
   badges: []
